@@ -1669,4 +1669,10 @@ getPmOutPack params pm_out_id = handleError <$> getAt params ["pm_out_pack", T.p
 getPmOutPack' :: Int64 -> ApiEff SpecificApiOptions (Either (ApiError ApplicationError) PmOutPackResponse)
 getPmOutPack' pm_out_id = handleError <$> getAt ([] :: [(Text, Text)]) ["pm_out_pack", T.pack $ show pm_out_id]
 
+getTemplates :: forall qp. QueryParam qp => [qp] -> ApiEff SpecificApiOptions (Either (ApiError ApplicationError) Templates)
+getTemplates params = handleError <$> getAt params ["templates"]
+
+getTemplates' :: ApiEff SpecificApiOptions (Either (ApiError ApplicationError) Templates)
+getTemplates'  = handleError <$> getAt ([] :: [(Text, Text)]) ["templates"]
+
 -- footer
